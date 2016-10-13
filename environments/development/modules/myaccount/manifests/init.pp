@@ -19,6 +19,10 @@ class myaccount {
     #install_options => ['--no-install-recommends'],
   }
 
+  package { 'ruby-full':
+    ensure          => installed
+  }
+
   package { 'virtualbox-guest-additions-iso':
     ensure          => installed
   }
@@ -38,18 +42,10 @@ class myaccount {
                     { 'ensure' => 'present', 'require' => 'Exec[nodesource]'
                     })
 
-  exec { 'set node version':
-    command => 'n 4.6.0',
-    path    => ['/bin', '/usr/bin'],
-    require => Package['n']
-  }
 
   ensure_resource('package',
-                  ['bower',     # Web client
-                  'http-server',# Web client
-                  'grunt',      # cloud server
-                  'forever',    # cloud server - run as a service
-                  'n',          # node version manager
+                  ['lite-server',# Web client
+                  'grunt'      # Web client
                   ],
                   { 'provider' => 'npm',
                   'ensure' => 'present',
@@ -140,5 +136,22 @@ class myaccount {
     "generate-locales":
      command => "/usr/sbin/dpkg-reconfigure --frontend=noninteractive locales",
      refreshonly => true;
+  }
+
+  class { '::ruby':
+      gems_version => 'latest',
+      before => Package['sass'];
+  }
+
+  package { 'sass':
+    ensure   => 'installed',
+    provider => 'gem';
+  }
+
+  exec { 'npm update':
+    command => 'npm update -g',
+    user => 'root',
+    path    => ['/usr/local/node/node-default/bin', '/bin', '/usr/bin'],
+    require => Package['nodejs'];
   }
 }
