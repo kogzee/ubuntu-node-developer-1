@@ -25,6 +25,8 @@ sudo puppet module install -i ~/provisioning/node-developer/environments/develop
 
 sudo puppet module install -i ~/provisioning/node-developer/environments/development/modules puppetlabs/ruby
 
+These can be installed to any location, but they may need to be copied to the modules folder in this repo's directory
+
 Then open up a terminal and navigate to the folder with this repo and type:
 
 ```
