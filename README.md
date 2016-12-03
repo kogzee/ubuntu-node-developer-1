@@ -1,4 +1,4 @@
-# myaccount-node-developer
+# ubuntu-node-developer
 
 Vagrant/Puppet scripts to automate provisioning of a developer virtual machine (using Virtual Box)
 
