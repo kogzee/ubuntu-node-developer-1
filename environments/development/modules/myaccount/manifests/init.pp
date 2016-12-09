@@ -46,7 +46,7 @@ class myaccount {
   ensure_resource('package',
                   ['lite-server',# Web client
                   'grunt',      # Web client
-                  'typescript'.
+                  'typescript',
                   'concurrently'
                   ],
                   { 'provider' => 'npm',
