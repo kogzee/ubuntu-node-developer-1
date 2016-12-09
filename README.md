@@ -78,7 +78,7 @@ sudo apt-get update
 ```
 
 ```
-sudo apt-get sudo apt-get install google-chrome-stable
+sudo apt-get install google-chrome-stable
 ```
 
 
